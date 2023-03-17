@@ -37,10 +37,27 @@
 		request.responseType = 'json';
 
 		/* STEP 7: Send the request with the send() method */
+		request.send();
 
 		/* STEP 8: Add an event handler that listens for the onload event of the JSON file/object */
-
+		request.onload = function() {
+			var iScreamInc = request.response;
+			console.log(iScreamInc);
+			//populateHeader(iScreamInc);
+			//showTopFlavours();
+		}
 		/* STEP 9: Build out the populateHeader() function */
+		function populateHeader(jsonObj){
+			//grab the company name and append it to the header
+			var headerH1 = document.createElement('h1');
+			headerH1.textContent = jsonObj.companyName;
+			header.appendChild(headerH1);
+			//grab the company location and est. date
+			var headerPg = document.createElement('p');
+			headerPg.textContent = 'Head Office: ' + jsonObj['headOffice']
+			+ ', Established: ' + jsonObj['established']; 
+			header.appendChild(headerPg);
+		}
 
 		/* STEP 10a: Assemble the showTopFlavors() function */
 
